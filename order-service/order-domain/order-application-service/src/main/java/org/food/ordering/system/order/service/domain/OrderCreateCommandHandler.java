@@ -31,13 +31,15 @@ public class OrderCreateCommandHandler {
     private final RestaurantRepository restaurantRepository;
 
     private final OrderDataMapper orderDataMapper;
+    private final ApplicationDomainEventPublisher applicationDomainEventPublisher;
 
-    public OrderCreateCommandHandler(OrderDomainService orderDomainService, OrderRepository orderRepository, CustomerRepository customerRepository, RestaurantRepository restaurantRepository, OrderDataMapper orderDataMapper) {
+    public OrderCreateCommandHandler(OrderDomainService orderDomainService, OrderRepository orderRepository, CustomerRepository customerRepository, RestaurantRepository restaurantRepository, OrderDataMapper orderDataMapper, ApplicationDomainEventPublisher applicationDomainEventPublisher) {
         this.orderDomainService = orderDomainService;
         this.orderRepository = orderRepository;
         this.customerRepository = customerRepository;
         this.restaurantRepository = restaurantRepository;
         this.orderDataMapper = orderDataMapper;
+        this.applicationDomainEventPublisher = applicationDomainEventPublisher;
     }
 
     @Transactional
@@ -48,8 +50,8 @@ public class OrderCreateCommandHandler {
         OrderCreatedEvent orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant);
         Order orderResult = saveOrder(order);
         log.info("Order is created with id: {}", orderCreatedEvent.getOrder().getId().getValue());
-        return orderDataMapper.orderToCreateOrderResponse(orderCreatedEvent.getOrder(),
-                "Order created successfully");
+        applicationDomainEventPublisher.publish(orderCreatedEvent);
+        return orderDataMapper.orderToCreateOrderResponse(orderResult, "Order created successfully");
     }
 
     private Restaurant checkRestaurant(CreateOrderCommand createOrderCommand) {
@@ -70,6 +72,7 @@ public class OrderCreateCommandHandler {
             throw new OrderDomainException("Could not find customer with customer id: " + customer);
         }
     }
+
     private Order saveOrder(Order order) {
         Order orderResult = orderRepository.save(order);
         if (orderResult == null) {
