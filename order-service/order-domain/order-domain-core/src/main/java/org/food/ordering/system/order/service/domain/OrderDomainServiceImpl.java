@@ -59,7 +59,7 @@ public class OrderDomainServiceImpl implements OrderDomainService {
         }
     }
 
-    // todo: optimize the method
+    // todo: optimize the method with hashmap
     private void setOrderProductInformation(Order order, Restaurant restaurant) {
         order.getItems().forEach(orderItem -> restaurant.getProducts().forEach(restaurantProduct -> {
             Product currentProduct = orderItem.getProduct();
