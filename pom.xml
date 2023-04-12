@@ -20,8 +20,7 @@
         <module>order-service</module>
         <module>common</module>
         <module>infrastructure</module>
-        <module>infrastructure/kafka</module>
-        <module>common/common-application</module>
+        <module>customer-service</module>
     </modules>
 
     <properties>

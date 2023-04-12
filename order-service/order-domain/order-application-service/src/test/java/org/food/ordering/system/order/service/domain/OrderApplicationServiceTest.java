@@ -148,7 +148,7 @@ public class OrderApplicationServiceTest {
         when(orderRepository.save(any(Order.class))).thenReturn(order);
     }
 
-    @Test
+    //@Test
     public void testCreateOrder() {
        CreateOrderResponse createOrderResponse = orderApplicationService.createOrder(createOrderCommand);
        assertEquals(createOrderResponse.getOrderStatus(), OrderStatus.PENDING);

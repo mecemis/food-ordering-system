@@ -13,11 +13,10 @@
     <packaging>pom</packaging>
     <modules>
         <module>common-domain</module>
+        <module>common-application</module>
     </modules>
 
     <properties>
-        <maven.compiler.source>19</maven.compiler.source>
-        <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
