@@ -1,6 +1,6 @@
 package org.food.ordering.system.kafka.producer.service.impl;
 
-import jakarta.annotation.PreDestroy;
+import javax.annotation.PreDestroy;
 import org.food.ordering.system.kafka.producer.exception.KafkaProducerException;
 import org.food.ordering.system.kafka.producer.service.KafkaProducer;
 import lombok.extern.slf4j.Slf4j;

@@ -2,7 +2,7 @@ package org.food.ordering.system.order.service.dataaccess.order.entity;
 
 import lombok.*;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.Objects;
 import java.util.UUID;
 
