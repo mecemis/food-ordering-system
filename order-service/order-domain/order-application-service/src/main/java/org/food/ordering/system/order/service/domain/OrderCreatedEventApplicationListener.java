@@ -1,7 +1,6 @@
 package org.food.ordering.system.order.service.domain;
 
 import org.food.ordering.system.order.service.domain.event.OrderCreatedEvent;
-import org.food.ordering.system.order.service.domain.ports.output.message.publisher.payment.OrderCreatedPaymentRequestMessagePublisher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionalEventListener;
