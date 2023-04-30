@@ -1,7 +1,6 @@
 package org.food.ordering.system.order.service.domain;
 
 import org.food.ordering.system.order.service.domain.dto.message.PaymentResponse;
-import org.food.ordering.system.order.service.domain.event.OrderPaidEvent;
 import org.food.ordering.system.order.service.domain.ports.input.message.listener.payment.PaymentResponseMessageListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -13,6 +12,7 @@ import static org.food.ordering.system.order.service.domain.entity.Order.FAILURE
 @Validated
 @Service
 public class PaymentResponseMessageListenerImpl implements PaymentResponseMessageListener {
+
     private final OrderPaymentSaga orderPaymentSaga;
 
     public PaymentResponseMessageListenerImpl(OrderPaymentSaga orderPaymentSaga) {
@@ -21,9 +21,8 @@ public class PaymentResponseMessageListenerImpl implements PaymentResponseMessag
 
     @Override
     public void paymentCompleted(PaymentResponse paymentResponse) {
-        OrderPaidEvent domainEvent = orderPaymentSaga.process(paymentResponse);
-        log.info("Publishing OrderPaidEvent for order id: {}", paymentResponse.getOrderId());
-        domainEvent.fire();
+        orderPaymentSaga.process(paymentResponse);
+        log.info("Order Payment Saga process operation is completed for order id: {}", paymentResponse.getOrderId());
     }
 
     @Override
