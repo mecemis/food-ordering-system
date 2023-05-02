@@ -1,8 +1,7 @@
 package org.food.ordering.system.order.service.messaging.mapper;
 
 import org.food.ordering.system.kafka.order.avro.model.*;
-import org.food.ordering.system.order.service.domain.dto.message.PaymentResponse;
-import org.food.ordering.system.order.service.domain.dto.message.RestaurantApprovalResponse;
+import org.food.ordering.system.order.service.domain.dto.message.*;
 import org.food.ordering.system.order.service.domain.outbox.model.approval.OrderApprovalEventPayload;
 import org.food.ordering.system.order.service.domain.outbox.model.payment.OrderPaymentEventPayload;
 import org.springframework.stereotype.Component;
@@ -77,4 +76,12 @@ public class OrderMessagingDataMapper {
                 .build();
     }
 
+    public CustomerModel customerAvroModeltoCustomerModel(CustomerAvroModel customerAvroModel) {
+        return CustomerModel.builder()
+                .id(customerAvroModel.getId())
+                .username(customerAvroModel.getUsername())
+                .firstName(customerAvroModel.getFirstName())
+                .lastName(customerAvroModel.getLastName())
+                .build();
+    }
 }
