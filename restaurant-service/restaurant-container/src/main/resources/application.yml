@@ -24,10 +24,12 @@ spring:
     username: postgres
     password: admin
     driver-class-name: org.postgresql.Driver
-    platform: postgres
-    schema: classpath:init-schema.sql
-    data: classpath:init-data.sql
-    initialization-mode: always
+  sql:
+    init:
+      platform: postgres
+      schema-locations: classpath:init-schema.sql
+      data-locations: classpath:init-data.sql
+      mode: always
 
 kafka-config:
   bootstrap-servers: localhost:19092, localhost:29092, localhost:39092

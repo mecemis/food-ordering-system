@@ -3,7 +3,7 @@ package org.food.ordering.system.payment.service.dataaccess.payment.entity;
 import org.food.ordering.system.domain.valueobject.PaymentStatus;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.Objects;

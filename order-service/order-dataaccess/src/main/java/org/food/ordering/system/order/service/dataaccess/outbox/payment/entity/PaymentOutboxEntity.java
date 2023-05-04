@@ -5,7 +5,7 @@ import org.food.ordering.system.outbox.OutboxStatus;
 import org.food.ordering.system.saga.SagaStatus;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 import java.util.UUID;
